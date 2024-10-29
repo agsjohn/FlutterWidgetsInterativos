@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,10 +13,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 68, 183, 58)),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Widgets Interativos'),
     );
   }
 }
@@ -39,6 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
+        centerTitle: true,
       ),
       body: Center(
         child: Column(
@@ -66,20 +68,26 @@ class _MyHomePageState extends State<MyHomePage> {
             RadioListTile(title: const Text("Feminino"),value: 1,
               groupValue: groupRadio, onChanged: (int? value){setState((){
                 groupRadio = value!;
-              });}),
+            });}),
             RadioListTile(title: const Text("Masculino"),value: 2,
               groupValue: groupRadio, onChanged: (int? value){setState((){
                 groupRadio = value!;
-              });}),
+            });}),
+              RadioListTile(title: const Text("Outro"),value: 3,
+              groupValue: groupRadio, onChanged: (int? value){setState((){
+                groupRadio = value!;
+            });}),
             CheckboxListTile(title: const Text("Aceita os termos de uso?"), value: ativo, onChanged: (value) => {setState(() {
               ativo = value!;
             })},),
             Container(
               margin: const EdgeInsets.all(10),
               child: 
-            TextField(keyboardType: TextInputType.phone, decoration: InputDecoration(label: Text("Idade")))
+            TextField(keyboardType: TextInputType.number, 
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly], 
+              decoration: const InputDecoration(label: Text("Idade")))
             ),
-            ElevatedButton(onPressed: () => 1, child: const Text("Enviar"))
+            ElevatedButton(onPressed: () {}, child: const Text("Enviar"))
           ], 
         ),
       ),
